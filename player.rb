@@ -20,8 +20,10 @@ class Player
 
   def collective_treasure
     @gold_coins += 1
+    puts "nice, you picked up some gold. Current account #{@gold_coins}"
       if @gold_coins % 10 == 0
         @lives += 1
+        puts "*mario sound* You gained a life!"
     end
   end
 
@@ -29,7 +31,7 @@ class Player
       @health_points -= damage
       if @health_points > 0
         @lives -= 1
-        #@health_points = 10
+        puts "Umph! you lose 1 life. You now have #{@lives} lives"
       else
         @lives = 0
         puts "Game over! You no longer have lives! Restarting"
@@ -45,14 +47,15 @@ class Player
 end
 
 omair = Player.new(5, 10, 5)
-# 11.times do
-#   omair.collective_treasure
-# end
-
 11.times do
-  omair.do_battle(1)
-  p omair.inspect
+  omair.collective_treasure
+  omair.inspect
 end
+
+# 11.times do
+#   omair.do_battle(1)
+#   p omair.inspect
+# end
 
 
 #p omair.inspect
