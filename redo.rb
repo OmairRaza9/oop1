@@ -1,30 +1,41 @@
-class BankAccount
+class Cat
 
-  def initialize(balance, interest_rate)
-    @balance = balance
-    @interest_rate = interest_rate
+  def initialize (name, preferred_food, meal_time)
+    @name = name
+    @preferred_food = preferred_food
+    @meal_time = meal_time
   end
 
-  def deposit(amount)
-    @balance += amount
+  def name
+    @name
   end
 
-  def withdraw(amount)
-    @balance -= amount
+  def preferred_food
+    @preferred_food
   end
 
-  def gain_interest
-    @balance *= @interest_rate
+  def meal_time
+    @meal_time
   end
 
+  def eats_at
+    if meal_time >= 13
+      return "#{meal_time-12}PM"
+    elsif meal_time == 12
+      return "#{meal_time}PM"
+    elsif meal_time < 12 && meal_time > 0
+      return "#{meal_time}AM"
+    elsif meal_time == 0
+      return "#{meal_time+12}AM"
+    end
+  end
+
+  def meow
+    puts "My name is #{name} and i eat #{preferred_food} at #{eats_at}."
+  end
 end
 
-omair = BankAccount.new(200, 1.05)
+nami=Cat.new("Nami", "Oranges", 12)
+robin=Cat.new("Robin", "Fish", 20)
 
-omair.gain_interest
-omair.gain_interest
-p omair
-omair.deposit(29.50)
-omair.gain_interest
-omair.withdraw(12.50)
-p omair
+puts robin.meow
