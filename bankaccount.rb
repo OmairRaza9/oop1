@@ -5,24 +5,26 @@ class BankAccount
     @interest_rate = interest_rate
   end
 
-  def deposit(credit)
-    @balance += credit
-
+  def deposit(amount)
+    @balance += amount
   end
 
-  def withdraw(debit)
-    @balance  -= debit
+  def withdraw(amount)
+    @balance -= amount
   end
 
   def gain_interest
-    @balance  *= @interest_rate
+    @balance *= @interest_rate
   end
 
 end
 
-omair = BankAccount.new(100, 1.1)
-p omair.deposit(10)
-p omair.inspect
-p omair.withdraw(50)
+omair = BankAccount.new(200, 1.05)
 
-p omair.gain_interest
+omair.gain_interest
+omair.gain_interest
+p omair
+omair.deposit(29.50)
+omair.gain_interest
+omair.withdraw(12.50)
+p omair

@@ -14,6 +14,17 @@ class Cat
     end
   end
 
+  # def eats_at(meal_time)
+  #   if meal_time >= 12
+  #     return "#{meal_time-12}pm"
+  #   else
+  #     return "#{meal_time }am"
+  #   end
+  # end
+  #
+  # def meow
+  #   puts "Hi, my name is #{@name} and I eat #{@preferred_food} at #{eats_at(@meal_time)}"
+
   def meow
     puts "Hi, my name is #{@name} and I eat #{@preferred_food} at #{eats_at}"
   end

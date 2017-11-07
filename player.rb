@@ -47,10 +47,10 @@ class Player
 end
 
 omair = Player.new(5, 10, 5)
-11.times do
-  omair.collective_treasure
-  omair.inspect
-end
+# 11.times do
+#   omair.collective_treasure
+#   omair.inspect
+# end
 
 # 11.times do
 #   omair.do_battle(1)

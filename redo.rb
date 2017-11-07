@@ -1,41 +1,74 @@
-class Cat
+class Paperboy
 
-  def initialize (name, preferred_food, meal_time)
+
+  def initialize (name)
     @name = name
-    @preferred_food = preferred_food
-    @meal_time = meal_time
+    @experience = 0.0
+    @quota = 50.0
+    @earnings = 0.0
+    @total_total_house = 0
+    @single_earnings = 0
   end
 
   def name
     @name
   end
 
-  def preferred_food
-    @preferred_food
+  def experience
+    @experience
   end
 
-  def meal_time
-    @meal_time
+  def earnings
+    @earnings
   end
 
-  def eats_at
-    if meal_time >= 13
-      return "#{meal_time-12}PM"
-    elsif meal_time == 12
-      return "#{meal_time}PM"
-    elsif meal_time < 12 && meal_time > 0
-      return "#{meal_time}AM"
-    elsif meal_time == 0
-      return "#{meal_time+12}AM"
+  def quota
+    @quota += @experience/2
+  end
+
+  def deliver(start_address, end_address)
+    total_house = (start_address.to_i - end_address.to_i).abs + 1
+    @experience += total_house
+    if total_house > @quota
+      @single_earnings = (@quota.to_f*0.25 + (total_house - @quota.to_f)*0.5)
+      @earnings += @single_earnings
+    else
+      @single_earnings = (total_house.to_f*0.25)
+
     end
+    if total_house < @quota
+      @single_earnings -= 2
+      @earnings += @single_earnings
+    end
+    return @single_earnings
+
+
   end
 
-  def meow
-    puts "My name is #{name} and i eat #{preferred_food} at #{eats_at}."
+  def report
+    puts "I'm #{name}, I've delivered #{experience} papers and I've earned $#{earnings} so far."
   end
 end
 
-nami=Cat.new("Nami", "Oranges", 12)
-robin=Cat.new("Robin", "Fish", 20)
+puts "What is your Paperboys name?"
+name = gets.chomp
 
-puts robin.meow
+boy = Paperboy.new(name)
+i = 0
+until i == "yes"
+  puts "What is the first house on your route today?"
+  a = gets.chomp.to_i
+  puts "What is the last house on your route today?"
+  b = gets.chomp.to_i
+  boy.deliver(a, b)
+  puts "Your day earnings are #{boy.earnings}$"
+  puts "Do you want to see your report?"
+  answer = gets.chomp
+  if answer == "yes"
+    boy.report
+  end
+  puts "Are you done delivering?"
+  i = gets.chomp
+end
+
+puts "Thanks for serving your local paper company, you made #{boy.earnings}$."
